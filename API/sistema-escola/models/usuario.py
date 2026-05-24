@@ -1,3 +1,5 @@
+from passlib.handlers.bcrypt import bcrypt
+
 from base import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 
@@ -12,4 +14,6 @@ class Usuario(Base):
     email = Column(String(100), nullable=False)
     numero = Column(String(100), nullable=False)
 
-
+    def __init__(self, senha, **kwargs):
+        super().__init__(**kwargs)
+        self.senha = bcrypt.hash(senha)
