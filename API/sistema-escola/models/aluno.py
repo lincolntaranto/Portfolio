@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DATE
 
-from base import Base
+from .base import Base
 
 class Aluno(Base):
     __tablename__ = "alunos"

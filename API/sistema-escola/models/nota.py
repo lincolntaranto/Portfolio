@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey, String, Float
 
-from base import Base
+from .base import Base
 
 class Nota(Base):
     __tablename__ = "notas"

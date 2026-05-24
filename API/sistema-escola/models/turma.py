@@ -2,7 +2,7 @@ import enum
 
 from sqlalchemy import Column, Integer, String, DATETIME, Enum
 
-from base import Base
+from .base import Base
 
 class Turnos(enum.Enum):
     manha = "manhã"

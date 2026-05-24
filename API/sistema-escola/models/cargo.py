@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import Enum
 
-from base import Base
+from .base import Base
 
 class Cargo(Base):
     __tablename__ = "cargos"
