@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from security import hash_senha
+from schemas.login import LoginSchema
+from security import hash_senha, autenticar_usuario
+from security import criar_token
 
 from models import Usuario
 from models.session import get_session
@@ -35,4 +37,16 @@ async def criar_conta(usuario_schema: UsuarioSchema, session: Session = Depends(
             "mensagem": "usuário cadastrado com sucesso!",
             "id": novo_usuario.id,
             "email": novo_usuario.email
+        }
+
+@auth_router.post("/login")
+async def login(login_schema: LoginSchema, session: Session = Depends(get_session)):
+    usuario = autenticar_usuario(login_schema.email, login_schema.senha, session)
+    if not usuario:
+        raise HTTPException(status_code=400, detail="usuário não encontrado ou senha incorreta.")
+    else:
+        acess_token = criar_token(usuario.id)
+        return {
+            "acess_token": acess_token,
+            "token_type": "Bearer"
         }
