@@ -15,8 +15,8 @@ def verificar_senha(senha: str, hash: str) -> bool:
 
 ALGORITHM = "HS256"
 
-def criar_token(id_usuario):
-    data_expiracao = datetime.now(timezone.utc) + timedelta(minutes=int(ACESS_TOKEN_EXPIRE_MINUTES))
+def criar_token(id_usuario, duracao_token=timedelta(int(ACESS_TOKEN_EXPIRE_MINUTES))):
+    data_expiracao = datetime.now(timezone.utc) + duracao_token
     dic_info = {
         "sub" : id_usuario,
         "exp" : data_expiracao
