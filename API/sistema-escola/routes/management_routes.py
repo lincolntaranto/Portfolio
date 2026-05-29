@@ -4,8 +4,9 @@ from sqlalchemy.orm import Session
 from models.session import get_session
 from models import Aluno
 from schemas.aluno import AlunoSchema
+from security import verificar_token
 
-management_router = APIRouter(prefix="/management", tags=["management"])
+management_router = APIRouter(prefix="/management", tags=["management"], dependencies=[Depends(verificar_token)])
 
 @management_router.get("/alunos")
 async def mostrar_alunos():
@@ -35,4 +36,15 @@ async def cadastrar_aluno(aluno_schema: AlunoSchema, session: Session = Depends(
         "id": novo_aluno.id,
         "nome": novo_aluno.nome,
         "turma": novo_aluno.turma
+    }
+
+@management_router.delete("/apagar_aluno")
+async def apagar_aluno(id_aluno: int, session: Session = Depends(get_session)):
+    aluno = session.query(Aluno).filter(Aluno.id == id_aluno).first()
+    if not aluno:
+        raise HTTPException(status_code=404, detail="ID de aluno inexistente!")
+    session.delete(aluno)
+    session.commit()
+    return {
+        "mensagem": "Aluno deletado com sucesso!"
     }
