@@ -3,6 +3,7 @@ from .cargo import Cargo
 from .nota import Nota
 from .turma import Turma
 from .usuario import Usuario
+from .log import Log
 from .base import Base
 
 __all__ = [
@@ -11,5 +12,6 @@ __all__ = [
     "Nota",
     "Turma",
     "Usuario",
+    "Log",
     "Base"
 ]
