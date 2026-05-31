@@ -2,7 +2,7 @@ import bcrypt
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from config import ACESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, oauth2_schema
+from config import ACCESS_TOKEN_EXPIRE_MINUTES, SECRET_KEY, oauth2_schema
 from models import Usuario
 
 from jose import jwt, JWTError
@@ -20,7 +20,7 @@ def verificar_senha(senha: str, hash: str) -> bool:
 
 ALGORITHM = "HS256"
 
-def criar_token(id_usuario, duracao_token=timedelta(int(ACESS_TOKEN_EXPIRE_MINUTES))):
+def criar_token(id_usuario, duracao_token=timedelta(int(ACCESS_TOKEN_EXPIRE_MINUTES))):
     data_expiracao = datetime.now(timezone.utc) + duracao_token
     dic_info = {
         "sub" : str(id_usuario),
