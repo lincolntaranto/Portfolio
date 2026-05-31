@@ -3,8 +3,9 @@ from sqlalchemy.orm import Session
 
 from models.log import Log
 from models.session import get_session
-from models import Aluno, Usuario, usuario
-from schemas.aluno import AlunoSchema
+from models import Aluno, Usuario
+from schemas.aluno.aluno import AlunoSchema
+from schemas.aluno.aluno_update import AlunoUpdateSchema
 from security import verificar_token
 
 management_router = APIRouter(prefix="/management", tags=["management"])
@@ -20,6 +21,7 @@ async def mostrar_alunos(id_aluno: int,
         raise HTTPException(status_code=404, detail="ID de aluno inexistente!")
     log = Log(
         id_usuario=usuario.id,
+        id_aluno=aluno.id,
         acao="consultar_aluno",
         descricao=f"Aluno {aluno.nome}, da turma {aluno.turma} foi consultado."
     )
@@ -50,13 +52,15 @@ async def cadastrar_aluno(aluno_schema: AlunoSchema,
         nome_responsavel=aluno_schema.nome_responsavel,
         celular_responsavel=aluno_schema.numero_responsavel
     )
+    session.add(novo_aluno)
+    session.flush()
     log = Log(
         id_usuario=usuario.id,
+        id_aluno=novo_aluno.id,
         acao= "cadastrar_aluno",
         descricao=f"Aluno {novo_aluno.nome}, da turma {novo_aluno.turma} foi cadastrado."
     )
     session.add(log)
-    session.add(novo_aluno)
     session.commit()
     session.refresh(novo_aluno)
     return {
@@ -79,6 +83,7 @@ async def apagar_aluno(id_aluno: int,
     session.delete(aluno)
     log = Log(
         id_usuario=usuario.id,
+        id_aluno=aluno.id,
         acao="deletar_aluno",
         descricao=f"Aluno {aluno.nome}, da turma {aluno.turma} foi deletado."
     )
@@ -89,4 +94,44 @@ async def apagar_aluno(id_aluno: int,
         "id": aluno.id,
         "nome": aluno.nome,
         "turma": aluno.turma
+    }
+
+@management_router.patch("/atualizar_aluno")
+async def atualizar_aluno(id_aluno: int,
+                          aluno_update_schema: AlunoUpdateSchema,
+                          session: Session = Depends(get_session),
+                          usuario: Usuario = Depends(verificar_token)
+                          ):
+    """Rota para atualizar um aluno do sistema."""
+
+    aluno = session.get(Aluno, id_aluno)
+    if not aluno:
+        raise HTTPException(status_code=404, detail="Aluno inexistente!")
+
+    if aluno_update_schema.nome is not None:
+        aluno.nome = aluno_update_schema.nome
+    if aluno_update_schema.data_nascimento is not None:
+        aluno.data_nascimento = aluno_update_schema.data_nascimento
+    if aluno_update_schema.turma is not None:
+        aluno.turma = aluno_update_schema.turma
+    if aluno_update_schema.nome_responsavel is not None:
+        aluno.nome_responsavel = aluno_update_schema.nome_responsavel
+    if aluno_update_schema.numero_responsavel is not None:
+        aluno.celular_responsavel = aluno_update_schema.numero_responsavel
+
+    log = Log(
+        id_usuario=usuario.id,
+        id_aluno=aluno.id,
+        acao="atualizar_aluno",
+        descricao=f"Aluno {aluno.nome}, da turma {aluno.turma} foi atualizado."
+    )
+
+    session.add(log)
+    session.commit()
+    session.refresh(aluno)
+
+    return{
+        "mensagem": "Aluno atualizado com sucesso!",
+        "id": aluno.id,
+        "nome": aluno.nome
     }
