@@ -54,7 +54,6 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 API REST para gestão escolar, cobrindo alunos, turmas, notas e controle de acesso com sistema de convites.
 
 [![Repository](https://img.shields.io/badge/repository-API--Sistema--Escola-blue?style=flat-square)](https://github.com/lincolntaranto/API-Sistema-Escola)
-
 [![Linter: Ruff](https://img.shields.io/badge/linter-ruff-black?style=flat-square&logo=ruff)](https://github.com/astral-sh/ruff)
 
 #### Especificações Técnicas
