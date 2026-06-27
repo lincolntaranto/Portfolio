@@ -21,6 +21,9 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 [![CI / Tests](https://img.shields.io/github/actions/workflow/status/lincolntaranto/template-api/ci.yml?label=CI%20/%20Tests&style=flat-square&logo=github-actions)](https://github.com/lincolntaranto/template-api)
 [![Linter: Ruff](https://img.shields.io/badge/linter-ruff-black?style=flat-square&logo=ruff)](https://github.com/astral-sh/ruff)
 [![Dependabot](https://img.shields.io/badge/dependabot-active-brightgreen?style=flat-square&logo=dependabot)](https://github.com/lincolntaranto/template-api/blob/main/.github/dependabot.yml)
+[![Deploy](https://img.shields.io/badge/deploy-render-purple)]()
+[![Status](https://img.shields.io/badge/status-online-success)](https://template-api-89m8.onrender.com/docs)
+[![Email: Resend](https://img.shields.io/badge/email-Resend-000000?style=flat-square&logo=resend)](https://resend.com/)
 
 #### Especificações Técnicas
 
@@ -32,7 +35,7 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 | **Migrations**    | Alembic                 | Controle de versão do banco de dados           |
 | **Configurações** | Pydantic Settings       | Gerenciamento de variáveis via arquivo `.env`  |
 | **Segurança**     | pwdlib (Argon2) & PyJWT | Criptografia de senhas e geração de tokens JWT |
-| **Comunicação**   | Jinja2 + HTML Emails    | Estruturação e envio automatizado de emails    |
+| **Comunicação**   | Resend + Jinja2         | Estruturação e envio automatizado de emails    |
 | **Qualidade**     | Pytest & Ruff           | Testes integrados e linter de código           |
 
 #### Funcionalidades Prontas
