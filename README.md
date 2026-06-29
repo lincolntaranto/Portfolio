@@ -37,6 +37,7 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 | **Segurança**     | pwdlib (Argon2) & PyJWT | Criptografia de senhas e geração de tokens JWT |
 | **Comunicação**   | Resend + Jinja2         | Estruturação e envio automatizado de emails    |
 | **Qualidade**     | Pytest & Ruff           | Testes integrados e linter de código           |
+| **Containerização** | Docker                | Isolamento do ambiente e orquestração dos serviços (App + Banco) |
 
 #### Funcionalidades Prontas
 
