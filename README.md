@@ -73,9 +73,9 @@ API REST para gestão escolar, cobrindo alunos, turmas, notas e controle de aces
 
 * Autenticação e Login JWT.
 * CRUD completo de alunos com hash seguro.
-* CRUD completo de turmas com hash seguro.
-* CRUD completo de cargos com hash seguro.
-* CRUD completo de notas com hash seguro.
+* CRUD completo de turmas.
+* CRUD completo de cargos.
+* CRUD completo de notas.
 * Sistema de convite.
 
 > **Acesse o código completo:** [API-Sistema-Escola](https://github.com/lincolntaranto/API-Sistema-Escola)
