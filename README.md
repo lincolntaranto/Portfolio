@@ -56,7 +56,8 @@ API REST para gestão escolar, cobrindo alunos, turmas, notas e controle de aces
 | Componente          | Ferramenta Utilizada          | Finalidade                                                   |
 | ------------------- | ----------------------------- | ------------------------------------------------------------ |
 | **Framework**       | FastAPI                       | Criação das rotas e documentação automática                  |
-| **ORM**             | SQLAlchemy                    | Mapeamento e consultas ao banco de dados                     |
+| **Arquitetura**     | Camadas (Router → Service → Model) | Separação entre transporte HTTP, regras de negócio e persistência |
+| **ORM**             | SQLAlchemy 2.0                | Mapeamento e consultas ao banco de dados                     |
 | **Database**        | PostgreSQL                    | Armazenamento relacional dos dados                           |
 | **Migrations**      | Alembic                       | Controle de versão do banco de dados                         |
 | **Configurações**   | Pydantic Settings             | Gerenciamento de variáveis via arquivo `.env`                |
@@ -66,8 +67,12 @@ API REST para gestão escolar, cobrindo alunos, turmas, notas e controle de aces
 
 #### Funcionalidades Prontas
 
-- Autenticação e Login JWT.
-- CRUD completo de alunos com hash seguro.
+- Arquitetura em camadas (routers, services e exceções de domínio) com tratamento de erros centralizado.
+- Versionamento de API com prefixo `/api/v1`.
+- Rotas RESTful (recurso no path, verbos HTTP semânticos).
+- Autenticação e Login JWT, com suporte a refresh token.
+- CRUD completo de alunos, com exclusão via **soft delete** para preservar histórico.
+- Listagem de alunos com filtros e paginação.
 - CRUD completo de turmas.
 - CRUD completo de cargos.
 - CRUD completo de notas.
