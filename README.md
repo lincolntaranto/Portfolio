@@ -29,7 +29,7 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 | **Database**        | PostgreSQL                    | Armazenamento relacional dos dados                           |
 | **Migrations**      | Alembic                       | Controle de versão do banco de dados                         |
 | **Configurações**   | Pydantic Settings             | Gerenciamento de variáveis via arquivo `.env`                |
-| **Segurança**       | pwdlib (Argon2) & PyJWT       | Criptografia de senhas e geração de tokens JWT               |
+| **Segurança**       | Argon2 & PyJWT                | Criptografia de senhas e geração de tokens JWT               |
 | **Comunicação**     | Resend + Jinja2               | Estruturação e envio automatizado de emails                  |
 | **Qualidade**       | Pytest, testcontainers & Ruff | Testes de integração com banco isolado e linter de código    |
 | **Containerização** | Docker & Docker Compose       | Isolamento do ambiente e orquestração dos serviços (App + Banco) |
