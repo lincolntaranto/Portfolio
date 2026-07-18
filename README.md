@@ -39,7 +39,7 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 - Autenticação e Login JWT.
 - CRUD completo de Usuários com hash seguro.
 - Sistema integrado para disparo de emails.
-- Suíte completa de testes automatizados e esteira de CI.
+- Suíte de testes automatizados, esteira de CI integração com Postgres isolado via testcontainers.
 
 > **Acesse o código completo:** [Repositório Template API](https://github.com/lincolntaranto/template-api)
 
@@ -79,7 +79,7 @@ API REST para gestão escolar, cobrindo alunos, turmas, notas e controle de aces
 - Sistema de convite para controle de cadastro de novos usuários.
 - Log de auditoria das ações realizadas no sistema.
 - Ambiente containerizado com Docker Compose.
-- Suíte de testes de integração com Postgres isolado via testcontainers.
+- Suíte de testes automatizados, esteira de CI integração com Postgres isolado via testcontainers.
 
 > **Acesse o código completo:** [API-Sistema-Escola](https://github.com/lincolntaranto/API-Sistema-Escola)
 
