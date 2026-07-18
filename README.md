@@ -41,7 +41,7 @@ Template de API REST baseado no template oficial do FastAPI, configurado para ac
 - Sistema integrado para disparo de emails.
 - Suíte de testes automatizados, esteira de CI integração com Postgres isolado via testcontainers.
 
-> **Acesse o código completo:** [Repositório Template API](https://github.com/lincolntaranto/template-api)
+> **Acesse o código completo:** [Template API](https://github.com/lincolntaranto/template-api)
 
 ------
 
